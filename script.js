@@ -21,10 +21,10 @@ const displayHTM = ((datas) =>{
 
     const html = `
     
-    <div class="col-md-4">
+    <div class="col-md-4 ">
     <div class="card mb-4 shadow-sm">
 
-      <img src="${data.src.medium}" class="card-img-top img-fluid w-100" ' ' alt="...">
+      <img src="${data.src.tiny}" class="card-img-top img-fluid w-100" ' ' alt="...">
 
       <div class="card-body">
         <p class="card-text">
@@ -46,8 +46,6 @@ const displayHTM = ((datas) =>{
       </div>
     </div>
   </div>
-
-    
     
     `
     mainRow.insertAdjacentHTML('afterbegin', html);
@@ -61,24 +59,12 @@ const displayHTM = ((datas) =>{
 })
 
 
-const getJSON = function (category) {
-  return fetch(`https://api.pexels.com/v1/search?query=${category}`, {
-    method: 'GET',
-    headers: {
-      Authorization: ipiKey,
-    },
-
-  }).then(reponse => reponse.json())
-  
-}
-
-
 const getFectData = function (category) {
 
-  const element = category === 'Ocean' ? 'Ocean' : 'Tigers'
+  // const element = category === 'Ocean' ? 'Ocean' : 'Tigers'
 
 
-  fetch(`https://api.pexels.com/v1/search?query=${element}`, {
+  fetch(`https://api.pexels.com/v1/search?query=${category}`, {
     method: 'GET',
     headers: {
       Authorization: ipiKey,
@@ -90,9 +76,9 @@ const getFectData = function (category) {
 
 return reponse.json()
   }).then((data ) =>{
-    // console.log(data.photos);
+    console.log(data.photos);
     
-    if(element == 'Ocean') btnPrimary.addEventListener('click', () =>{displayHTM(data.photos)}) 
+    if(category == 'Ocean') btnPrimary.addEventListener('click', () =>{displayHTM(data.photos)}) 
       else btnSecundary.addEventListener('click', () =>{displayHTM(data.photos)}) 
 
   })
